@@ -1,16 +1,15 @@
-# This is a sample Python script.
 from HashTable import HashTable
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+from Package import Package
+import csv
 
-
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
-
-
-# Press the green button in the gutter to run the script.
 if __name__ == '__main__':
-    print_hi('PyCharm')
-
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+    packageHash = HashTable()
+    with open('packages.csv', newline='') as csvfile:
+        reader = csv.reader(csvfile, delimiter=',', quotechar='"')
+        for row in reader:
+            package = Package(row[0], row[1], row[2], row[3], row[4], row[5], row[6], row[7], "at the hub")
+            packageHash.insert(int(package.id), package)
+    with open('distances.csv', newline='') as csvfile:
+        reader = csv.reader(csvfile, delimiter=',', quotechar='"')
+        for row in reader:
+            print(row[1].split('\n')[0])
