@@ -25,7 +25,6 @@ class HashTable:
         for i in range(len(bucket_list)):
             if bucket_list[i][0] == key:
                 value = bucket_list[i][1]
-                print(value)
-                return
+                return value
         print("nothing")
 
