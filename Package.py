@@ -11,4 +11,8 @@ class Package:
         self.status = status
 
     def __str__(self):
-        return "{self.id}, {self.address}, {self.city}, {self.state}, {self.zip}, {self.delivery_deadline}, {self.weight}kg, {self.notes}, {self.status}".format(self=self)
+        if (self.notes != ""):
+            return "{self.id}, {self.address}, {self.city}, {self.state}, {self.zip}, {self.delivery_deadline}, {self.weight}kg, {self.notes}, {self.status}".format(self=self)
+        else:
+            return "{self.id}, {self.address}, {self.city}, {self.state}, {self.zip}, {self.delivery_deadline}, {self.weight}kg, ..., {self.status}".format(
+                self=self)
