@@ -77,7 +77,7 @@ if __name__ == '__main__':
         truck3_packages = [7, 8, 9, 11, 12, 17, 24, 25, 27, 28, 32, 33, 39]
         truck3 = Truck("Truck 3", 18, datetime.timedelta(hours=10, minutes=30), truck3_packages, "4001 South 700 East")
 
-        print("=============================================================================\n" +
+        print("\n=============================================================================\n" +
               "p: Show all package information and total mileage\n" +
               "s {package_id} {time (ex: 13:10)}: Show single package information with time\n" +
               "a {time (ex 13:10)}: Show all packages with time\n" +
