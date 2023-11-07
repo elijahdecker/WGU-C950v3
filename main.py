@@ -7,22 +7,25 @@ import csv
 
 package_hash = HashTable()
 package_ids = []
+
+# Read the data from packages.csv
 with open('packages.csv', newline='') as csvfile:
     reader = csv.reader(csvfile, delimiter=',', quotechar='"')
     packages = list(reader)
+
+# Read the data from distances.csv
 with open('distances.csv', newline='') as csvfile:
     reader = csv.reader(csvfile, delimiter=',', quotechar='"')
     distances = list(reader)
 
-# Time: O(n)
-# Space: O(n)
+# Use the data from the packages.csv file to populate a hash table
 def populate_package_hash():
     for row in packages:
         p = Package(row[0], row[1], row[2], row[3], row[4], row[5], row[6], row[7], "At the hub")
         package_ids.append(int(p.id))
         package_hash.insert(int(p.id), p)
-# Time: O(n)
-# Space: O(1)
+
+# Find the index of an address in the distances.csv file
 def find_address(address):
     i = 0
     for col in distances[0]:
@@ -30,8 +33,7 @@ def find_address(address):
             return i
         i = i + 1
 
-# Time: O(n^2)
-# Space: O(n)
+# Nearest neighbor algorithm
 def calculate_route(truck, end_time):
     undelivered_packages = truck.packages.copy()
     # Do not run if the truck will not have departed
@@ -92,7 +94,7 @@ def calculate_route(truck, end_time):
     return truck
 
 
-
+# Main program
 if __name__ == '__main__':
 
 

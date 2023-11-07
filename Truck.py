@@ -1,4 +1,6 @@
 class Truck:
+
+    # Initialize a new Truck object
     def __init__(self, name, speed, current_time, packages, current_location):
         self.name = name
         self.speed = speed
