@@ -1,3 +1,4 @@
+# Student ID: 010229142
 import datetime
 
 from HashTable import HashTable
@@ -93,13 +94,13 @@ def calculate_route(truck, end_time):
             truck.distance += least_distance
     return truck
 
-
 # Main program
 if __name__ == '__main__':
 
 
     while True:
         # Populate hash table from package CSV file
+        package_ids = []
         populate_package_hash()
 
         # Create truck objects and manually load packages

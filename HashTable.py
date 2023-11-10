@@ -1,6 +1,5 @@
 
 class HashTable:
-
     # Initialize the buckets in the hash table
     def __init__(self, initial_length=10):
         self.map = []
