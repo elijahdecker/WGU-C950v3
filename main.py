@@ -22,9 +22,15 @@ with open('distances.csv', newline='') as csvfile:
 # Use the data from the packages.csv file to populate a hash table
 def populate_package_hash():
     for row in packages:
-        p = Package(row[0], row[1], row[2], row[3], row[4], row[5], row[6], row[7], "At the hub")
-        package_ids.append(int(p.id))
-        package_hash.insert(int(p.id), p)
+        # If the package has the wrong address listed and has the ID of 9, update the address
+        if (row[7] == "Wrong address listed" and row[0] == "9"):
+            p = Package(row[0], "410 S State St", "Salt Lake City", "UT", "84111", row[5], row[6], row[7], "At the hub")
+            package_ids.append(int(p.id))
+            package_hash.insert(int(p.id), p)
+        else:
+            p = Package(row[0], row[1], row[2], row[3], row[4], row[5], row[6], row[7], "At the hub")
+            package_ids.append(int(p.id))
+            package_hash.insert(int(p.id), p)
 
 # Find the index of an address in the distances.csv file
 def find_address(address):
@@ -39,6 +45,7 @@ def calculate_route(truck, end_time):
     undelivered_packages = truck.packages.copy()
     # Do not run if the truck will not have departed
     if (end_time >= truck.current_time):
+
         # Change the status of each package on the truck to "En route"
         for package_id in truck.packages:
             package = package_hash.search(package_id)
@@ -82,7 +89,7 @@ def calculate_route(truck, end_time):
                 break;
 
             # Mark the package as delivered
-            next_package.status = "Delivered @ " + str(truck.current_time)
+            next_package.status = "Delivered @ " + str(truck.current_time) + " by " + truck.name
 
             # Update the package in the hash table
             package_hash.insert(int(next_package.id), next_package)
